@@ -1,9 +1,9 @@
 # SharePoint Event Receiver Manager (2007 & 2010)
 
-**Project Migration Notice:** This project was originally hosted on CodePlex and was officially migrated to GitHub on December 31, 2017[cite: 2].
+**Project Migration Notice:** This project was originally hosted on CodePlex and was officially migrated to GitHub on December 31, 2017.
 
 ## Project Description
-The SharePoint Event Receiver Manager tool was born out of a personal need for a more polished and professional way to manage event receivers on SharePoint servers[cite: 2, 3]. While other tools existed at the time, they often lacked the ease of use required for a painless development workflow[cite: 3]. This tool is written in C# and was developed as a "pet project" to provide a more intuitive interface for SharePoint developers[cite: 2, 4].
+The SharePoint Event Receiver Manager tool was born out of a personal need for a more polished and professional way to manage event receivers on SharePoint servers. While other tools existed at the time, they often lacked the ease of use required for a painless development workflow. This tool is written in C# and was developed as a "pet project" to provide a more intuitive interface for SharePoint developers.
 
 ## Features
 * **Auto Detection:** Automatically detects local SharePoint instances.
@@ -14,8 +14,8 @@ The SharePoint Event Receiver Manager tool was born out of a personal need for a
 * **Smart Filtering:** Automatically filters event hooks to show only those defined in a selected event receiver.
 
 ## Release History
-* **Version 2 (Stable):** Released Nov 28, 2011 — Supports SharePoint 2007 & 2010[cite: 6].
-* **Version 1 (Legacy):** Released Mar 28, 2011 — Supports SharePoint 2007 & 2010[cite: 6].
+* **Version 2 (Stable):** Released Nov 28, 2011 — Supports SharePoint 2007 & 2010.
+* **Version 1 (Legacy):** Released Mar 28, 2011 — Supports SharePoint 2007 & 2010.
 
 ## Screenshots
 
