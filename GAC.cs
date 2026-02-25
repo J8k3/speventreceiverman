@@ -343,9 +343,7 @@ namespace SPEventReceiverManager
         /// <returns>IAssemblyCache COM interface</returns>
         public static IAssemblyCache CreateAssemblyCache()
         {
-            IAssemblyCache ac;
-
-            AssemblyCache.CreateAssemblyCache(out ac, 0);
+            AssemblyCache.CreateAssemblyCache(out IAssemblyCache ac, 0);
 
             return ac;
         }
@@ -356,9 +354,7 @@ namespace SPEventReceiverManager
 
         public static IAssemblyName CreateAssemblyName(string name)
         {
-            IAssemblyName an;
-
-            AssemblyCache.CreateAssemblyNameObject(out an, name, 2, (IntPtr)0);
+            AssemblyCache.CreateAssemblyNameObject(out IAssemblyName an, name, 2, (IntPtr)0);
 
             return an;
         }
@@ -381,9 +377,7 @@ namespace SPEventReceiverManager
 
         public static Version GetVersion(IAssemblyName name)
         {
-            uint major;
-            uint minor;
-            name.GetVersion(out major, out minor);
+            name.GetVersion(out uint major, out uint minor);
             return new Version((int)major >> 16, (int)major & 0xFFFF, (int)minor >> 16, (int)minor & 0xFFFF);
         }
 
@@ -427,9 +421,7 @@ namespace SPEventReceiverManager
 
         public static IAssemblyEnum CreateGACEnum()
         {
-            IAssemblyEnum ae;
-
-            AssemblyCache.CreateAssemblyEnum(out ae, (IntPtr)0, null, ASM_CACHE_FLAGS.ASM_CACHE_GAC, (IntPtr)0);
+            AssemblyCache.CreateAssemblyEnum(out IAssemblyEnum ae, (IntPtr)0, null, ASM_CACHE_FLAGS.ASM_CACHE_GAC, (IntPtr)0);
 
             return ae;
         }
@@ -817,7 +809,7 @@ namespace SPEventReceiverManager
             [MarshalAs(UnmanagedType.LPWStr)] string pszStreamName,
             uint dwFormat,
             uint dwFormatFlags,
-            out UCOMIStream ppIStream,
+            out System.Runtime.InteropServices.ComTypes.IStream ppIStream,
             ref long puliMaxSize);
 
         /// <summary>

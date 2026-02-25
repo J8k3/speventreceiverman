@@ -19,7 +19,7 @@ namespace SPEventReceiverManager
 
         #region Constructors
 
-        public AddDialog(spevthkman parentForm, SPWeb web, ISecurableObject selectedObject)
+        public AddDialog(spevthkman parentForm, SPWeb web, SPSecurableObject selectedObject)
             : base()
         {
             this.m_ParentForm = parentForm;
@@ -42,7 +42,7 @@ namespace SPEventReceiverManager
             private set;
         }
 
-        internal ISecurableObject SelectedObject
+        internal SPSecurableObject SelectedObject
         {
             get;
             private set;
@@ -102,9 +102,7 @@ namespace SPEventReceiverManager
         {
             StringBuilder message = new StringBuilder(ex.ToString());
 
-            ReflectionTypeLoadException tex = ex as ReflectionTypeLoadException;
-
-            if (tex != null)
+            if (ex is ReflectionTypeLoadException tex)
             {
                 foreach (Exception o in tex.LoaderExceptions)
                 {
@@ -114,7 +112,7 @@ namespace SPEventReceiverManager
                 }
             }
 
-            MessageBox.Show(this, message.ToString(), "An unexpected errror has occured!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, message.ToString(), "An unexpected error has occurred!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void SetUIState(bool enabled)
@@ -335,8 +333,6 @@ namespace SPEventReceiverManager
                         Type selectedObjectType = this.SelectedObject.GetType();
 
                         SPEventReceiverType eventType = (SPEventReceiverType)Enum.Parse(typeof(SPEventReceiverType), typeName);
-
-                        int maxSequence = 9999;
 
                         SPEventReceiverDefinitionCollection definitions = null;
 

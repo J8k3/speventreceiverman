@@ -68,11 +68,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <HintPath>\Bin\SP2010\Microsoft.SharePoint.dll</HintPath>
+      <HintPath>\Solution Items\SP2010\Microsoft.SharePoint.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <!--<Reference Include="Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <HintPath>bin\SP2007\Microsoft.SharePoint.dll</HintPath>
+      <HintPath>Solution Items\SP2007\Microsoft.SharePoint.dll</HintPath>
     </Reference>-->
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -166,13 +166,30 @@
     <Content Include="Resources\Lists.png" />
     <Content Include="Resources\Web.png" />
     <Content Include="Resources\Webs.png" />
+    <Content Include="Solution Items\SP2007\Microsoft.Office.Excel.Server.WebServices.dll" />
+    <Content Include="Solution Items\SP2007\Microsoft.Office.Server.dll" />
+    <Content Include="Solution Items\SP2007\Microsoft.Office.Server.Search.dll" />
+    <Content Include="Solution Items\SP2007\Microsoft.SharePoint.dll" />
+    <Content Include="Solution Items\SP2007\Microsoft.SharePoint.Library.dll" />
+    <Content Include="Solution Items\SP2007\microsoft.sharepoint.portal.dll" />
+    <Content Include="Solution Items\SP2007\Microsoft.SharePoint.Portal.SingleSignon.dll" />
+    <Content Include="Solution Items\SP2007\Microsoft.SharePoint.Portal.SingleSignon.Security.dll" />
+    <Content Include="Solution Items\SP2007\Microsoft.SharePoint.Publishing.dll" />
+    <Content Include="Solution Items\SP2007\Microsoft.SharePoint.Search.dll" />
+    <Content Include="Solution Items\SP2007\Microsoft.SharePoint.Security.dll" />
+    <Content Include="Solution Items\SP2007\Microsoft.Web.Design.Server.dll" />
+    <Content Include="Solution Items\SP2010\Microsoft.SharePoint.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="LICENSE" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

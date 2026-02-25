@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using Microsoft.SharePoint;
 using System.Reflection;
@@ -21,7 +19,7 @@ namespace SPEventReceiverManager
 
         #region Constructors
 
-        public CopyDialog(spevthkman parentForm, SPWeb web, ISecurableObject selectedObject)
+        public CopyDialog(spevthkman parentForm, SPWeb web, SPSecurableObject selectedObject)
             : base()
         {
             this.m_ParentForm = parentForm;
@@ -42,7 +40,7 @@ namespace SPEventReceiverManager
             private set;
         }
 
-        internal ISecurableObject SelectedObject
+        internal SPSecurableObject SelectedObject
         {
             get;
             private set;
@@ -54,7 +52,7 @@ namespace SPEventReceiverManager
 
         private void HandleException(Exception ex)
         {
-            MessageBox.Show(this, ex.ToString(), "An unexpected errror has occured!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, ex.ToString(), "An unexpected error has occurred!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void CopyDialog_Load(object sender, EventArgs e)

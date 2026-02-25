@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.SharePoint;
-using Microsoft.SharePoint.Administration;
 using SPEventReceiverManager.Properties;
 using SPEventReceiverManager.AutoUpdater;
 
@@ -18,7 +17,7 @@ namespace SPEventReceiverManager
 
         private SPSite m_Site;
         private SPWeb m_Web;
-        private ISecurableObject m_SelectedObject;
+        private SPSecurableObject m_SelectedObject;
         private readonly List<FileInfo> m_GACCache;
 
         #endregion
@@ -69,7 +68,7 @@ namespace SPEventReceiverManager
 
         private void HandleException(Exception ex)
         {
-            MessageBox.Show(this, ex.ToString(), "An unexpected errror has occured!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, ex.ToString(), "An unexpected error has occurred!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void ResetObjectTreeView()
@@ -92,7 +91,7 @@ namespace SPEventReceiverManager
                 if ((DateTime.Today - Settings.Default.LastUpdateCheckDate).TotalMinutes >= 1440)
                 {
                     UpdaterService service = new UpdaterService();
-                    service.UpdateAvailable += new EventHandler<UpdateReaultEventArgs>(this.Service_UpdateAvailable);
+                    service.UpdateAvailable += new EventHandler<UpdateResultEventArgs>(this.Service_UpdateAvailable);
                     service.CheckForUpdatesAsync();
 
                     Settings.Default.LastUpdateCheckDate = DateTime.Today;
@@ -117,7 +116,7 @@ namespace SPEventReceiverManager
             }
         }
 
-        private void Service_UpdateAvailable(object sender, UpdateReaultEventArgs e)
+        private void Service_UpdateAvailable(object sender, UpdateResultEventArgs e)
         {
             if (MessageBox.Show("An updated version of this tool is available. Do you want to download the updated version?", "An Update is Available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
@@ -187,7 +186,9 @@ namespace SPEventReceiverManager
 
                 SiteItem webItem = this.WebComboBox.SelectedItem as SiteItem;
 
-                this.m_Web = this.m_Site.OpenWeb(webItem.SiteId);
+                if (webItem != null)
+                {
+                    this.m_Web = this.m_Site.OpenWeb(webItem.SiteId);
 
                 foreach (SPList list in this.m_Web.Lists)
                 {
@@ -215,6 +216,7 @@ namespace SPEventReceiverManager
 
                 this.VerifyAllToolStripButton.Enabled = true;
                 this.CopyHooksToolStripButton.Enabled = true;
+                }
             }
             catch (UnauthorizedAccessException)
             {
@@ -385,19 +387,19 @@ namespace SPEventReceiverManager
             }
         }
 
-        private void DeleteEventReceiverHook(Guid guid, ISecurableObject eventContiner)
+        private void DeleteEventReceiverHook(Guid guid, SPSecurableObject eventContainer)
         {
             SPEventReceiverDefinitionCollection definitions = null;
 
-            if (typeof(SPWeb).IsAssignableFrom(eventContiner.GetType()))
+            if (typeof(SPWeb).IsAssignableFrom(eventContainer.GetType()))
             {
-                SPWeb web = (SPWeb)eventContiner;
+                SPWeb web = (SPWeb)eventContainer;
 
                 definitions = web.EventReceivers;
             }
-            else if (typeof(SPList).IsAssignableFrom(eventContiner.GetType()))
+            else if (typeof(SPList).IsAssignableFrom(eventContainer.GetType()))
             {
-                SPList list = (SPList)eventContiner;
+                SPList list = (SPList)eventContainer;
 
                 definitions = list.EventReceivers;
             }
@@ -462,7 +464,7 @@ namespace SPEventReceiverManager
                 {
                     foreach (SPEventReceiverDefinition definition in definitions)
                     {
-                        string eventName = definition.Id.ToString("B").ToUpper();
+                        string eventTypeName = definition.Type.ToString();
 
                         MethodInfo methodHook = null;
 
@@ -472,12 +474,12 @@ namespace SPEventReceiverManager
                         }
                         catch
                         {
-                            //Ignore Errror
+                            //Ignore Error
                         }
 
                         EventHook hook = new EventHook(definition, methodHook);
 
-                        dictionary[eventName].Add(hook);
+                        dictionary[eventTypeName].Add(hook);
                     }
                 }
 
@@ -731,7 +733,7 @@ namespace SPEventReceiverManager
             }
             else if (!typeof(SPList).IsAssignableFrom(this.m_SelectedObject.GetType()))
             {
-                MessageBox.Show(this, "The copy feature currently only supports duplicating event reciever hooks for lists and libraries.", "Webs Not Supported", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "The copy feature currently only supports duplicating event receiver hooks for lists and libraries.", "Webs Not Supported", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 

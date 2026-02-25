@@ -5,6 +5,11 @@
 ## Project Description
 The SharePoint Event Receiver Manager tool was born out of a personal need for a more polished and professional way to manage event receivers on SharePoint servers. While other tools existed at the time, they often lacked the ease of use required for a painless development workflow. This tool is written in C# and was developed as a "pet project" to provide a more intuitive interface for SharePoint developers.
 
+## Requirements
+* **Must be run directly on the SharePoint server** - The tool uses the SharePoint Server Object Model and requires local server access.
+* SharePoint Server 2007 or 2010 installed.
+* Administrator permissions on the SharePoint server.
+
 ## Features
 * **Auto Detection:** Automatically detects local SharePoint instances.
 * **Validation:** Validates existing event hooks and ensures selected assemblies contain proper event receiver definitions.

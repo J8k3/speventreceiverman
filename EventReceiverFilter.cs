@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SPEventReceiverManager
+﻿namespace SPEventReceiverManager
 {
     public enum EventReceiverFilter
     {

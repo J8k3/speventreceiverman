@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SPEventReceiverManager.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="EnableAutoUpdate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="LastUpdateCheckDate" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2000-01-01</Value>
+    </Setting>
+    <Setting Name="DownloadBaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://speventreceiverman.codeplex.com/downloads/get/</Value>
+    </Setting>
+    <Setting Name="VersionHistoryUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://speventreceiverman.codeplex.com/project/feeds/rss?ProjectRSSFeed=codeplex%3a%2f%2frelease%2fspeventreceiverman</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

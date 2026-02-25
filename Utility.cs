@@ -14,7 +14,7 @@ namespace SPEventReceiverManager
         {
             MethodInfo method = null;
 
-            Assembly assembly = Assembly.LoadWithPartialName(assemblyFullName);
+            Assembly assembly = Assembly.Load(assemblyFullName);
 
             if (assembly != null)
             {
@@ -53,17 +53,15 @@ namespace SPEventReceiverManager
             }
         }
 
-        public static void ProcessEventHookAction(Form parent, ISecurableObject obj, string typeName, Assembly selectedAssembly, Type selectedType, bool useNextSequenceNumber)
+        public static void ProcessEventHookAction(Form parent, SPSecurableObject obj, string typeName, Assembly selectedAssembly, Type selectedType, bool useNextSequenceNumber)
         {
             Type selectedObjectType = obj.GetType();
 
             SPEventReceiverType eventType = (SPEventReceiverType)Enum.Parse(typeof(SPEventReceiverType), typeName);
 
             int maxSequence = 9999;
-
-            SPEventReceiverDefinitionCollection definitions = null;
-
-            string parentName = string.Empty;
+            string parentName;
+            SPEventReceiverDefinitionCollection definitions;
 
             if (typeof(SPWeb).IsAssignableFrom(selectedObjectType))
             {
